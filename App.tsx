@@ -1,10 +1,10 @@
-import {SafeAreaView, Text} from 'react-native';
-import {size} from './src/theme/fonts';
+import {SafeAreaView} from 'react-native';
+import {Post} from './src/components/Post';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Text style={{fontSize: size.lg}}>App.tsx 2</Text>
+      <Post />
     </SafeAreaView>
   );
 };
