@@ -4,8 +4,10 @@ import {IconSVGProps} from '../../types/common';
 export const IconEmptyBookmark = ({
   size = 24,
   color = 'black',
+  style,
 }: IconSVGProps) => (
   <Svg
+    style={style}
     fill="none"
     stroke={color}
     strokeLinecap="round"
