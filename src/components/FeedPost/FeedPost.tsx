@@ -1,11 +1,11 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {colors} from '../theme/colors';
-import {IconThreeDots} from '../assets/icons/IconThreeDots';
-import {size, weights} from '../theme/fonts';
-import {IconEmptyHeart} from '../assets/icons/IconEmptyHeart';
-import {IconComment} from '../assets/icons/IconComment';
-import {IconMessage} from '../assets/icons/IconMessage';
-import {IconEmptyBookmark} from '../assets/icons/IconEmptyBookmark';
+import {Image, Text, View} from 'react-native';
+import {colors} from '../../theme/colors';
+import {IconThreeDots} from '../../assets/icons/IconThreeDots';
+import {IconEmptyHeart} from '../../assets/icons/IconEmptyHeart';
+import {IconComment} from '../../assets/icons/IconComment';
+import {IconMessage} from '../../assets/icons/IconMessage';
+import {IconEmptyBookmark} from '../../assets/icons/IconEmptyBookmark';
+import {styles} from './FeedPost.styles';
 
 const user = {
   id: 1,
@@ -24,7 +24,7 @@ const post = {
   age: '6 days ago',
 };
 
-export const Post = () => {
+export const FeedPost = () => {
   return (
     <View style={styles.postContainer}>
       <View style={styles.header}>
@@ -56,11 +56,16 @@ export const Post = () => {
           {post.description}
           <Text style={styles.grayText}>... more</Text>
         </Text>
-        <View>
+        <View style={styles.commentContainer}>
           <Text>
             <Text style={styles.boldText}>sarra.soualahalila </Text>
             To tick a clock or watch
           </Text>
+          <IconEmptyHeart
+            color={colors.gray}
+            size={16}
+            style={styles.commentIcon}
+          />
         </View>
         <Text style={styles.allCommentsText}>
           View all {post.commentCount} comments
@@ -70,66 +75,3 @@ export const Post = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  postContainer: {},
-  image: {
-    width: '100%',
-    aspectRatio: 1,
-  },
-  header: {
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-  userAndLocationContainer: {
-    marginLeft: 10,
-  },
-  userName: {
-    fontWeight: weights.bold,
-    color: colors.black,
-  },
-  postLocation: {
-    color: colors.gray,
-  },
-  actionIcon: {
-    marginLeft: 'auto',
-  },
-  footer: {
-    padding: 10,
-  },
-  actionsContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconFooter: {
-    marginHorizontal: 5,
-  },
-  rightIcon: {
-    marginLeft: 'auto',
-  },
-  boldText: {
-    fontWeight: weights.bold,
-  },
-  grayText: {
-    color: colors.gray,
-  },
-  likedContainer: {
-    marginTop: 10,
-  },
-  allCommentsText: {
-    color: colors.gray,
-    marginVertical: 5,
-  },
-  agePost: {
-    fontSize: size.xs,
-    color: colors.gray,
-  },
-});

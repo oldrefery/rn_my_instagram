@@ -1,10 +1,10 @@
 import {SafeAreaView} from 'react-native';
-import {Post} from './src/components/Post';
+import {FeedPost} from './src/components/FeedPost/FeedPost';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Post />
+      <FeedPost />
     </SafeAreaView>
   );
 };
