@@ -1,36 +1,22 @@
 import {Image, Text, View} from 'react-native';
-import {colors} from '../../theme/colors';
 import {IconThreeDots} from '../../assets/icons/IconThreeDots';
 import {IconEmptyHeart} from '../../assets/icons/IconEmptyHeart';
 import {IconComment} from '../../assets/icons/IconComment';
 import {IconMessage} from '../../assets/icons/IconMessage';
 import {IconEmptyBookmark} from '../../assets/icons/IconEmptyBookmark';
 import {styles} from './FeedPost.styles';
-
-const user = {
-  id: 1,
-  name: 'thisisthehague',
-  avatar:
-    'https://www.dutchnews.nl/wpcms/wp-content/uploads/2023/07/Wikipedia_Minister_Arie_Slob-RS.jpg',
-};
-const post = {
-  description: 'Hermione or Hargrid?',
-  user,
-  image:
-    'https://www.dutchnews.nl/wpcms/wp-content/uploads/2022/02/IMG_8870.jpg',
-  location: 'Stockholm, Sweden',
-  likedCount: 38394,
-  commentCount: 122,
-  age: '6 days ago',
-};
-
-export const FeedPost = () => {
+import {IPost} from '../../types/models';
+import {Comment} from '../Comment/Comment';
+interface FeedPostProps {
+  post: IPost;
+}
+export const FeedPost = ({post}: FeedPostProps) => {
   return (
-    <View style={styles.postContainer}>
+    <View style={styles.postContainer} key={post.id}>
       <View style={styles.header}>
-        <Image source={{uri: post.image}} style={styles.avatar} />
+        <Image source={{uri: post.user.image}} style={styles.avatar} />
         <View style={styles.userAndLocationContainer}>
-          <Text style={styles.userName}>{post.user.name}</Text>
+          <Text style={styles.userName}>{post.user.username}</Text>
           {post.location && (
             <Text style={styles.postLocation}>{post.location}</Text>
           )}
@@ -48,29 +34,21 @@ export const FeedPost = () => {
         <View style={styles.likedContainer}>
           <Text>
             Liked by <Text style={styles.boldText}>rishat.rs</Text> and{' '}
-            <Text style={styles.boldText}>{post.likedCount} others</Text>
+            <Text style={styles.boldText}>{post.likesCount} others</Text>
           </Text>
         </View>
-        <Text>
+        <Text style={styles.description}>
           <Text style={styles.boldText}>{post.user.name} </Text>
           {post.description}
           <Text style={styles.grayText}>... more</Text>
         </Text>
-        <View style={styles.commentContainer}>
-          <Text>
-            <Text style={styles.boldText}>sarra.soualahalila </Text>
-            To tick a clock or watch
-          </Text>
-          <IconEmptyHeart
-            color={colors.gray}
-            size={16}
-            style={styles.commentIcon}
-          />
-        </View>
+        {post.comments.map(comment => (
+          <Comment comment={comment} key={comment.id} />
+        ))}
         <Text style={styles.allCommentsText}>
-          View all {post.commentCount} comments
+          View all {post.commentsCount} comments
         </Text>
-        <Text style={styles.agePost}>{post.age}</Text>
+        <Text style={styles.agePost}>{post.createdAt}</Text>
       </View>
     </View>
   );

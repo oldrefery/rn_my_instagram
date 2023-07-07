@@ -63,12 +63,6 @@ export const styles = StyleSheet.create({
     fontSize: size.xs,
     color: colors.gray,
   },
-  commentIcon: {
-    marginLeft: 'auto',
-  },
-  commentContainer: {
-    marginTop: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+
+  description: {},
 });
